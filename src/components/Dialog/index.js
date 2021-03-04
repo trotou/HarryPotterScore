@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -25,6 +25,16 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 export default function FormDialog(id) {
+  const [value, setValue] = useState(0);
+  const [open, setOpen] = useState(false);
+  const [student, setStudent] = useState("");
+
+  useEffect(() => {
+    axios
+      .get("https://hp-api.herokuapp.com/api/characters/students")
+      .then((result) => setStudent(result.data[id["id"]]));
+  }, [id]);
+
   const dispatch = useDispatch();
 
   const schema = yup.object().shape({
@@ -40,18 +50,8 @@ export default function FormDialog(id) {
     resolver: yupResolver(schema),
   });
 
-  const [value, setValue] = useState(0);
-  const [open, setOpen] = useState(false);
-  const [student, setStudent] = useState("");
-  const requestStudent = async () => {
-    return await axios
-      .get("https://hp-api.herokuapp.com/api/characters/students")
-      .then((resp) => setStudent(resp.data[id["id"]]));
-  };
-
   const handleClickOpen = () => {
     setOpen(true);
-    requestStudent();
   };
 
   const handleClose = () => {
