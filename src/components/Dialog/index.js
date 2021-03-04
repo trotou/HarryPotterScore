@@ -107,7 +107,6 @@ export default function FormDialog(id) {
 
                 <TextField
                   className={classes.textfield}
-                  autoFocus
                   variant="filled"
                   margin="dense"
                   name="points"

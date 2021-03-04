@@ -18,11 +18,20 @@ export const ImageHouse = styled.img`
   padding: 0;
   width: 30%;
   height: 50%;
+
+  @media (max-width: 520px) {
+    width: 25%;
+  }
 `;
 
 export const ImageStudent = styled.img`
   width: 320px;
   height: 400px;
+
+  @media (max-width: 520px) {
+    width: 200px;
+    height: 250px;
+  }
 `;
 
 export const ImageBadge = styled.img`
@@ -57,6 +66,11 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: "flex-start",
     fontSize: "biggest",
     color: "gold",
+    [theme.breakpoints.down("sm")]: {
+      width: "85%",
+      flexDirection: "row",
+      flexWrap: "wrap",
+    },
   },
 
   textfield: {
@@ -64,6 +78,12 @@ export const useStyles = makeStyles((theme) => ({
     borderRadius: "5%",
     width: "55%",
     left: "5%",
+    [theme.breakpoints.down("sm")]: {
+      width: "50%",
+      justifyContent: "space-around",
+      marginRight: "6%",
+      padding: "none",
+    },
   },
 
   title: {
@@ -74,6 +94,10 @@ export const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "flex-start",
     marginLeft: "7%",
+    [theme.breakpoints.down("sm")]: {
+      marginLeft: "none",
+      justifyContent: "space-evenly",
+    },
   },
 
   buttonGain: {
